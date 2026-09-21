@@ -12,6 +12,13 @@
   Sections with no items are hidden.
 */
 const root = document.getElementById("sections");
+let autoplaySection = false;
+const autoplay = new IntersectionObserver(entries => {
+  for (const e of entries) {
+    if (e.isIntersecting) e.target.play().catch(() => {});
+    else e.target.pause();
+  }
+}, { threshold: 0.4 });
 let delay = 0;
 
 if (!SECTIONS.some(s => s.items.length)) {
@@ -25,6 +32,7 @@ for (const s of SECTIONS) {
   const grid = document.createElement("div");
   grid.className = "grid" + (s.vertical ? " vertical" : "") + (s.static ? " static" : "");
   if (s.ratio) { grid.dataset.ratio = ""; grid.style.setProperty("--ratio", s.ratio); }
+  autoplaySection = !!s.vertical;
   for (const it of s.items) grid.appendChild(card(it, delay += 80));
   sec.appendChild(grid);
   root.appendChild(sec);
@@ -50,11 +58,24 @@ function card(it, d) {
     };
   } else if (it.type === "video") {
     const v = document.createElement("video");
-    v.src = it.src; v.preload = "metadata"; v.playsInline = true;
+    v.src = it.src; v.playsInline = true;
     if (it.poster) v.poster = it.poster;
-    const btn = playBtn();
-    media.append(v, btn);
-    media.onclick = () => { v.controls = true; btn.remove(); v.play(); media.onclick = null; };
+    if (autoplaySection) {
+      // Short vertical clips play muted in a loop while on screen, like a feed.
+      v.muted = true; v.loop = true; v.preload = "none";
+      media.append(v, soundBtn());
+      autoplay.observe(v);
+      media.onclick = () => {
+        v.muted = false; v.loop = false; v.controls = true;
+        v.currentTime = 0; v.play();
+        autoplay.unobserve(v); media.querySelector(".sound")?.remove(); media.onclick = null;
+      };
+    } else {
+      v.preload = "metadata";
+      const btn = playBtn();
+      media.append(v, btn);
+      media.onclick = () => { v.controls = true; btn.remove(); v.play(); media.onclick = null; };
+    }
   } else if (it.type === "image") {
     const img = new Image(); img.src = it.src; img.alt = it.title || ""; img.loading = "lazy";
     if (it.w && it.h) { media.classList.add("natural"); media.style.aspectRatio = `${it.w} / ${it.h}`; }
@@ -77,6 +98,8 @@ function card(it, d) {
   }
   return el;
 }
+
+function soundBtn() { const b = document.createElement("span"); b.className = "sound"; b.textContent = "Sound on"; return b; }
 
 function playBtn() { const b = document.createElement("span"); b.className = "play"; return b; }
 
