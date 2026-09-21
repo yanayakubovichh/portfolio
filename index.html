@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yana Yakubovich — Video</title>
+<meta name="description" content="Design Engineer & AI Video Creator. Video, AI creatives and ads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Yana <em>Yakubovich</em></h1>
+    <p class="role">Design Engineer &amp; AI Video Creator</p>
+    <nav class="links">
+      <a href="mailto:jenjendesigner@gmail.com">jenjendesigner@gmail.com</a>
+      <a href="https://t.me/yana_yakubovich" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.behance.net/yana_yakubovich" target="_blank" rel="noopener">UI/UX portfolio</a>
+    </nav>
+    <nav class="tabs">
+      <a href="index.html" aria-current="page">Video</a>
+      <a href="ads.html">Banners &amp; Creatives</a>
+    </nav>
+  </header>
+
+  <main id="sections"></main>
+
+  <footer>
+    <span>Yana Yakubovich · Batumi, Georgia</span>
+    <a href="mailto:jenjendesigner@gmail.com">Get in touch</a>
+  </footer>
+</div>
+
+<script>
+const SECTIONS = [
+  { title: "AI Video", vertical: true, items: [
+    { type: "video", src: "media/clip-13.mp4", poster: "media/clip-13.jpg", title: "UGC-style selfie video", meta: "AI video, Higgsfield" },
+    { type: "video", src: "media/clip-02.mp4", poster: "media/clip-02.jpg", title: "Fashion lookbook — look 1", meta: "AI video, consistent character" },
+    { type: "video", src: "media/clip-03.mp4", poster: "media/clip-03.jpg", title: "Fashion lookbook — look 2", meta: "AI video, consistent character" },
+    { type: "video", src: "media/clip-05.mp4", poster: "media/clip-05.jpg", title: "Lifestyle mood video", meta: "AI video" },
+    { type: "video", src: "media/clip-07.mp4", poster: "media/clip-07.jpg", title: "Fashion runway", meta: "AI video" },
+  ]},
+  { title: "Short-form Video", note: "Full cycle on every video: script, storyboard, shooting and editing.", vertical: true, items: [
+    { type: "video", src: "media/clip-01.mp4", poster: "media/clip-01.jpg", title: "Adorn Croft — collection teaser", meta: "Brand teaser" },
+    { type: "video", src: "media/clip-08.mp4", poster: "media/clip-08.jpg", title: "Execute — sports VIP club", meta: "Promo Reel" },
+    { type: "video", src: "media/clip-09.mp4", poster: "media/clip-09.jpg", title: "Execute — club atmosphere", meta: "Atmosphere Reel" },
+    { type: "video", src: "media/clip-06.mp4", poster: "media/clip-06.jpg", title: "Business community event, Shanghai", meta: "Event recap" },
+    { type: "video", src: "media/clip-10.mp4", poster: "media/clip-10.jpg", title: "Reel about ad targeting", meta: "Talking head with screen inserts" },
+    { type: "video", src: "media/clip-11.mp4", poster: "media/clip-11.jpg", title: "Podcast clip", meta: "Podcast cut with captions" },
+  ]},
+  { title: "Brand Video", vertical: false, items: [
+    { type: "video", src: "media/brand-01.mp4", poster: "media/brand-01.jpg", title: "Music video — «Я в Китае», Daniel", meta: "Shooting" },
+    { type: "video", src: "media/brand-02.mp4", poster: "media/brand-02.jpg", title: "HD Shanghai School — Debate Club promo", meta: "Script, storyboard, editing" },
+  ]},
+  { title: "Blog Reels", vertical: true, items: [] },
+];
+</script>
+<script src="site.js"></script>
+</body>
+</html>
